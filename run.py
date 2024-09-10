@@ -27,4 +27,31 @@ class BattleshipGame:
         self.num_ships = self.size 
         self.hits = 0
         self.attempts= 0
-        self.max_attempts = self.size * 2  
+        self.max_attempts = self.size * 2
+
+    def get_board_size(self):
+        """
+        Get the user input for the board size between 5 to 8 and validate the input value.
+        """ 
+        while True:  # Loop until valid input is provided
+            try:
+                size = int(input("Enter board size (5-8): "))
+                if 5 <= size <= 8:  # Ensure size is within the valid range
+                    return size
+                else:
+                    print("Please choose a size between 5 and 8.")
+            except ValueError as e:
+                print(f"Invalid data: {e}. Please enter a valid integer between 5 and 8.\n")
+
+ 
+def main():
+    """
+    Run the Game
+    """
+    startbattle = BattleshipGame()
+    print(startbattle.player_board.board)
+    print(startbattle.computer_board.board)
+ 
+
+print("Welcome to Battleship Game")
+main()
