@@ -56,6 +56,17 @@ class BattleshipGame:
                     print("Please choose a size between 5 and 8.")
             except ValueError as e:
                 print(f"Invalid data: {e}. Please enter a valid integer between 5 and 8.\n")
+     
+    def show_boards(self):
+        """
+        Method to show both player's and computer's boards
+        Player's ships are revealed
+        Hide computer's ships
+        """ 
+        print("\nPlayer's Board (with ships):")
+        self.player_board.create_board(reveal_ships=True)  
+        print("\nComputer's Board (without ships):")
+        self.computer_board.create_board(reveal_ships=False)  
 
  
 def main():
@@ -63,10 +74,7 @@ def main():
     Run the Game
     """
     startbattle = BattleshipGame()
-    print("\nPlayer's Board (with ships):")
-    startbattle.player_board.create_board(reveal_ships=True)  
-    print("\nComputer's Board (without ships):")
-    startbattle.computer_board.create_board(reveal_ships=False)  
+    startbattle.show_boards()
  
 
 print("Welcome to Battleship Game")
