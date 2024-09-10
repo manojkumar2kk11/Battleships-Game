@@ -11,7 +11,21 @@ class Board:
         self.computer = computer
         self.board = [["$"] * size for _ in range(size)]
         self.ships = []
-        self.guesses = set() 
+        self.guesses = set()
+
+    def create_board(self, reveal_ships=False):
+        """
+        Method to create the board for players and computer, and to instruct reveal or not the ships based on the player or computer.
+        Hide the computer's ships, show hits and misses only
+        Show ships on the player's board or computer's revealed board
+        """
+        print("  " + " ".join(str(i) for i in range(self.size)))
+        for idx, row in enumerate(self.board):
+            if self.computer and not reveal_ships:
+                hidden_row = ["$" if cell == "S" else cell for cell in row]
+                print(f"{idx} " + " ".join(hidden_row))
+            else:
+                print(f"{idx} " + " ".join(row)) 
 
 # Create a class battleship Game
 class BattleshipGame:
@@ -49,8 +63,10 @@ def main():
     Run the Game
     """
     startbattle = BattleshipGame()
-    print(startbattle.player_board.board)
-    print(startbattle.computer_board.board)
+    print("\nPlayer's Board (with ships):")
+    startbattle.player_board.create_board(reveal_ships=True)  
+    print("\nComputer's Board (without ships):")
+    startbattle.computer_board.create_board(reveal_ships=False)  
  
 
 print("Welcome to Battleship Game")
