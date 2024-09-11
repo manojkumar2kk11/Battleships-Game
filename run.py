@@ -81,7 +81,8 @@ class BattleshipGame:
         self.player_board = Board(self.size)  
         self.computer_board = Board(self.size, computer=True)  
         self.num_ships = self.size 
-        self.hits = 0
+        self.player_hits = 0
+        self.computer_hits = 0
         self.attempts= 0
         self.max_attempts = self.size * 2
 
@@ -136,7 +137,7 @@ class BattleshipGame:
         print(f"You have chosen the board size: {self.size}x{self.size}. You need to defeat {self.num_ships} ships.") 
 
         # Main game loop
-        while self.hits < self.num_ships and self.attempts < self.max_attempts:
+        while self.player_hits < self.num_ships and self.attempts < self.max_attempts:
             self.show_boards()  # Show both boards
             # Receive and validate row and column inputs
             row = self.get_valid_input("Enter Row of your guess: ")
@@ -148,6 +149,31 @@ class BattleshipGame:
             # Add the guess to the set of guessed coordinates
             self.computer_board.add_guess(row, col)
             self.attempts += 1
+            # Check the row and column players guess match with computer board
+            if (row, col) in self.computer_board.ships:
+                print(f"Players guessed: ({row},{col})")
+                print("Player Hit!")
+                self.player_hits += 1
+                print(f"Players Score: {self.player_hits} and Computer Score: {self.computer_hits}")
+                # Remove ship from computer's fleet
+                self.computer_board.ships.remove((row, col))
+                # Mark hit on computer board  
+                self.computer_board.mark(row, col, True)  
+            else:
+                print(f"Players guessed: ({row},{col})")
+                print("Player Miss!")
+                print(f"Players Score: {self.player_hits} and Computer Score: {self.computer_hits}")
+                # Mark miss on computer board
+                self.computer_board.mark(row, col, False)
+            
+            # User input to continue or exit the game,
+            user_input = input("Press any key to continue or 'n' to exit: ")
+            if user_input.lower() == 'n':
+                print("Exiting the Battleship Game.")
+                break
+
+
+             
  
 def main():
     """
