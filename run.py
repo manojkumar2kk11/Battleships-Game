@@ -1,3 +1,5 @@
+# Import the random number module
+import random
 
 # Create a class Board 
 class Board:
@@ -22,10 +24,21 @@ class Board:
         print("  " + " ".join(str(i) for i in range(self.size)))
         for idx, row in enumerate(self.board):
             if self.computer and not reveal_ships:
-                hidden_row = ["$" if cell == "S" else cell for cell in row]
+                hidden_row = ["$" if cell == "@" else cell for cell in row]
                 print(f"{idx} " + " ".join(hidden_row))
             else:
-                print(f"{idx} " + " ".join(row)) 
+                print(f"{idx} " + " ".join(row))
+
+    def place_ships(self, num_ships):
+        """
+        Method to place ships randomly on the board
+        """
+        while len(self.ships) < num_ships:
+            row = random.randint(0, self.size - 1)
+            col = random.randint(0, self.size - 1)
+            if (row, col) not in self.ships:
+                self.ships.append((row, col))
+                self.board[row][col] = "@"  # Mark ship location 
 
 # Create a class battleship Game
 class BattleshipGame:
@@ -74,6 +87,8 @@ def main():
     Run the Game
     """
     startbattle = BattleshipGame()
+    startbattle.player_board.place_ships(startbattle.num_ships)
+    startbattle.computer_board.place_ships(startbattle.num_ships)
     startbattle.show_boards()
  
 
