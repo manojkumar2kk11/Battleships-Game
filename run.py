@@ -141,9 +141,13 @@ class BattleshipGame:
             # Receive and validate row and column inputs
             row = self.get_valid_input("Enter Row of your guess: ")
             col = self.get_valid_input("Enter Column of your guess: ")
-           
-
-
+            # Check if the player already guessed these coordinates
+            if self.computer_board.already_guessed(row, col):
+                print("You've already guessed these row and column! Try again.")
+                continue
+            # Add the guess to the set of guessed coordinates
+            self.computer_board.add_guess(row, col)
+            self.attempts += 1
  
 def main():
     """
