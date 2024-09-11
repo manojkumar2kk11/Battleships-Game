@@ -109,6 +109,20 @@ class BattleshipGame:
         self.player_board.create_board(reveal_ships=True)  
         print("\nComputer's Board (without ships):")
         self.computer_board.create_board(reveal_ships=False)
+    
+    def get_valid_input(self,prompt ):
+        """
+        Method to valid the row and column guess
+        """
+        while True:
+            try:
+                value = int(input(prompt))
+                if 0 <= value < self.size:
+                    return value
+                else:
+                    print(f"Please enter a number between 0 and {self.size - 1}.")
+            except ValueError as e:
+                print(f"Invalid data: {e}. Please enter a valid integer.\n")
 
     def start_game(self):
         """
@@ -124,16 +138,10 @@ class BattleshipGame:
         # Main game loop
         while self.hits < self.num_ships and self.attempts < self.max_attempts:
             self.show_boards()  # Show both boards
-            # Recieve the player's row guess
-            try:
-                row_input = int(input("Enter Row of your guess: "))
-                if row_input < self.size:  # Ensure size is within the valid range
-                    row=row_input
-                else:
-                    print("Please choose a valid size.")
-            except ValueError as e:
-                print(f"Invalid data: {e}. Please enter a valid integer.\n")
-                continue
+            # Receive and validate row and column inputs
+            row = self.get_valid_input("Enter Row of your guess: ")
+            col = self.get_valid_input("Enter Column of your guess: ")
+           
 
 
  
