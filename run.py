@@ -108,7 +108,18 @@ class BattleshipGame:
         print("\nPlayer's Board (with ships):")
         self.player_board.create_board(reveal_ships=True)  
         print("\nComputer's Board (without ships):")
-        self.computer_board.create_board(reveal_ships=False)  
+        self.computer_board.create_board(reveal_ships=False)
+
+    def start_game(self):
+        """
+        Method to play the game
+        """ 
+        # Place ships on both boards
+        self.player_board.place_ships(self.num_ships)
+        self.computer_board.place_ships(self.num_ships)
+
+        print("\nLet's play Battleships!")
+        print(f"You have chosen the board size: {self.size}x{self.size}. You need to defeat {self.num_ships} ships.")  
 
  
 def main():
@@ -116,6 +127,8 @@ def main():
     Run the Game
     """
     startbattle = BattleshipGame()
+    startbattle.start_game()
+    """
     startbattle.player_board.place_ships(startbattle.num_ships)
     startbattle.computer_board.place_ships(startbattle.num_ships)
     startbattle.show_boards()
@@ -126,6 +139,7 @@ def main():
     print(startbattle.player_board.guesses)
     startbattle.computer_board.mark(a,b,True)
     startbattle.show_boards()
+    """
 
 print("Welcome to Battleship Game")
 main()
