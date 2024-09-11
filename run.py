@@ -46,6 +46,13 @@ class Board:
         """
         return 0 <= row < self.size and 0 <= col < self.size
 
+     
+    def add_guess(self, row, col):
+        """
+        Method to add the guess to the set of guesses.
+        """
+        self.guesses.add((row, col))
+
 
 # Create a class battleship Game
 class BattleshipGame:
@@ -97,8 +104,11 @@ def main():
     startbattle.player_board.place_ships(startbattle.num_ships)
     startbattle.computer_board.place_ships(startbattle.num_ships)
     startbattle.show_boards()
-    print(startbattle.computer_board.valid_guess(5,4))
- 
+    a= int(input("Enter the row guess\n"))
+    b= int(input("Enter the col guess\n"))
+    print(startbattle.player_board.valid_guess(a,b))
+    startbattle.player_board.add_guess(a,b)
+    print(startbattle.player_board.guesses)
 
 print("Welcome to Battleship Game")
 main()
