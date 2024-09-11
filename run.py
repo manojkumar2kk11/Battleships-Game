@@ -165,6 +165,27 @@ class BattleshipGame:
                 print(f"Players Score: {self.player_hits} and Computer Score: {self.computer_hits}")
                 # Mark miss on computer board
                 self.computer_board.mark(row, col, False)
+
+            # Computer random row and column guess
+            row_random= random.randint(0, self.size - 1)
+            col_random = random.randint(0, self.size - 1)
+
+            # Check the row and column computer guess match with player board
+            if (row_random, col_random) in self.player_board.ships:
+                print(f"Computer guessed: ({row_random},{col_random})")
+                print("Computer Hit!")
+                self.computer_hits += 1
+                print(f"Players Score: {self.player_hits} and Computer Score: {self.computer_hits}")
+                # Remove ship from computer's fleet
+                self.player_board.ships.remove((row_random, col_random))
+                # Mark hit on computer board  
+                self.player_board.mark(row_random, col_random, True)  
+            else:
+                print(f"Computer guessed: ({row_random},{col_random})")
+                print("Computer Miss!")
+                print(f"Players Score: {self.player_hits} and Computer Score: {self.computer_hits}")
+                # Mark miss on computer board
+                self.player_board.mark(row_random, col_random, False)
             
             # User input to continue or exit the game,
             user_input = input("Press any key to continue or 'n' to exit: ")
