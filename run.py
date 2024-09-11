@@ -39,6 +39,13 @@ class Board:
             if (row, col) not in self.ships:
                 self.ships.append((row, col))
                 self.board[row][col] = "@"  # Mark ship location 
+    
+    def valid_guess(self, row, col):
+        """
+        Method to check if a given guess is valid, row and column must be greater than zero and less than the size.
+        """
+        return 0 <= row < self.size and 0 <= col < self.size
+
 
 # Create a class battleship Game
 class BattleshipGame:
@@ -90,6 +97,7 @@ def main():
     startbattle.player_board.place_ships(startbattle.num_ships)
     startbattle.computer_board.place_ships(startbattle.num_ships)
     startbattle.show_boards()
+    print(startbattle.computer_board.valid_guess(5,4))
  
 
 print("Welcome to Battleship Game")
