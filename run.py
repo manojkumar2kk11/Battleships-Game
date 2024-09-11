@@ -111,19 +111,19 @@ class BattleshipGame:
             except ValueError as e:
                 print(f"Invalid data: {e}. Please enter a valid integer"
                       "between 5 and 8.\n")
-     
+
     def show_boards(self):
         """
         Method to show both player's and computer's boards
         Player's ships are revealed
         Hide computer's ships
-        """ 
+        """
         print("\nPlayer's Board (with ships):")
-        self.player_board.create_board(reveal_ships=True)  
+        self.player_board.create_board(reveal_ships=True)
         print("\nComputer's Board (without ships):")
         self.computer_board.create_board(reveal_ships=False)
-    
-    def get_valid_input(self,prompt ):
+
+    def get_valid_input(self, prompt):
         """
         Method to valid the row and column guess
         """
@@ -133,29 +133,33 @@ class BattleshipGame:
                 if 0 <= value < self.size:
                     return value
                 else:
-                    print(f"Please enter a number between 0 and {self.size - 1}.")
+                    print(f"Please enter a number"
+                          " between 0 and {self.size - 1}.")
             except ValueError as e:
                 print(f"Invalid data: {e}. Please enter a valid integer.\n")
 
     def start_game(self):
         """
         Method to play the game
-        """ 
+        """
         # Place ships on both boards
         self.player_board.place_ships(self.num_ships)
         self.computer_board.place_ships(self.num_ships)
         print("\nLet's play Battleships!")
-        print(f"You have chosen the board size: {self.size}x{self.size}. You need to defeat {self.num_ships} ships.") 
+        print(f"You have chosen the board size: {self.size}x{self.size}."
+              "You need to defeat {self.num_ships} ships.")
 
         # Main game loop
-        while self.player_hits < self.num_ships and self.attempts < self.max_attempts:
+        while (self.player_hits < self.num_ships
+                and self.attempts < self.max_attempts):
             self.show_boards()  # Show both boards
             # Receive and validate row and column inputs
             row = self.get_valid_input("Enter Row of your guess:\n")
             col = self.get_valid_input("Enter Column of your guess:\n")
             # Check if the player already guessed these coordinates
             if self.computer_board.already_guessed(row, col):
-                print("You've already guessed these row and column! Try again.")
+                print("You've already guessed these row"
+                      " and column! Try again.")
                 continue
             # Add the guess to the set of guessed coordinates
             self.computer_board.add_guess(row, col)
@@ -165,20 +169,22 @@ class BattleshipGame:
                 print(f"Players guessed: ({row},{col})")
                 print("Player Hit!")
                 self.player_hits += 1
-                print(f"Players Score: {self.player_hits} and Computer Score: {self.computer_hits}")
+                print(f"Players Score: {self.player_hits}"
+                      " and Computer Score: {self.computer_hits}")
                 # Remove ship from computer's fleet
                 self.computer_board.ships.remove((row, col))
-                # Mark hit on computer board  
-                self.computer_board.mark(row, col, True)  
+                # Mark hit on computer board
+                self.computer_board.mark(row, col, True)
             else:
                 print(f"Players guessed: ({row},{col})")
                 print("Player Miss!")
-                print(f"Players Score: {self.player_hits} and Computer Score: {self.computer_hits}")
+                print(f"Players Score: {self.player_hits}"
+                      " and Computer Score: {self.computer_hits}")
                 # Mark miss on computer board
                 self.computer_board.mark(row, col, False)
 
             # Computer random row and column guess
-            row_random= random.randint(0, self.size - 1)
+            row_random = random.randint(0, self.size - 1)
             col_random = random.randint(0, self.size - 1)
 
             # Check the row and column computer guess match with player board
@@ -186,18 +192,20 @@ class BattleshipGame:
                 print(f"Computer guessed: ({row_random},{col_random})")
                 print("Computer Hit!")
                 self.computer_hits += 1
-                print(f"Players Score: {self.player_hits} and Computer Score: {self.computer_hits}")
+                print(f"Players Score: {self.player_hits}"
+                      " and Computer Score: {self.computer_hits}")
                 # Remove ship from computer's fleet
                 self.player_board.ships.remove((row_random, col_random))
-                # Mark hit on computer board  
-                self.player_board.mark(row_random, col_random, True)  
+                # Mark hit on computer board
+                self.player_board.mark(row_random, col_random, True)
             else:
                 print(f"Computer guessed: ({row_random},{col_random})")
                 print("Computer Miss!")
-                print(f"Players Score: {self.player_hits} and Computer Score: {self.computer_hits}")
+                print(f"Players Score: {self.player_hits}"
+                      " and Computer Score: {self.computer_hits}")
                 # Mark miss on computer board
                 self.player_board.mark(row_random, col_random, False)
-            
+
             # User input to continue or exit the game,
             user_input = input("Press any key to continue or 'n' to exit:\n")
             if user_input.lower() == 'n':
@@ -217,13 +225,12 @@ class BattleshipGame:
             print("\nSorry! Computer destroyed all your ships!")
         else:
             print("\nGame over! You've run out of attempts.")
-
         print("\nFinal Boards:")
         print("Player's Board (with ships):")
         self.player_board.create_board(reveal_ships=True)
-
         print("\nComputer's Board (with ships revealed):")
         self.computer_board.create_board(reveal_ships=True)
+
 
 def main():
     """
@@ -231,6 +238,7 @@ def main():
     """
     startbattle = BattleshipGame()
     startbattle.start_game()
+
 
 print("Welcome to Battleship Game")
 main()
