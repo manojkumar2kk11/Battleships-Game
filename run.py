@@ -99,7 +99,7 @@ class BattleshipGame:
         # Loop until valid input is provided
         while True:  
             try:
-                size = int(input("Enter board size (5-8): "))
+                size = int(input("Enter board size (5-8):\n"))
                 # Ensure size is within the valid range
                 if 5 <= size <= 8:  
                     return size
@@ -147,8 +147,8 @@ class BattleshipGame:
         while self.player_hits < self.num_ships and self.attempts < self.max_attempts:
             self.show_boards()  # Show both boards
             # Receive and validate row and column inputs
-            row = self.get_valid_input("Enter Row of your guess: ")
-            col = self.get_valid_input("Enter Column of your guess: ")
+            row = self.get_valid_input("Enter Row of your guess:\n")
+            col = self.get_valid_input("Enter Column of your guess:\n")
             # Check if the player already guessed these coordinates
             if self.computer_board.already_guessed(row, col):
                 print("You've already guessed these row and column! Try again.")
@@ -195,7 +195,7 @@ class BattleshipGame:
                 self.player_board.mark(row_random, col_random, False)
             
             # User input to continue or exit the game,
-            user_input = input("Press any key to continue or 'n' to exit: ")
+            user_input = input("Press any key to continue or 'n' to exit:\n")
             if user_input.lower() == 'n':
                 print("Exiting the Battleship Game.")
                 break
