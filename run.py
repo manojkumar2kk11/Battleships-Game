@@ -43,8 +43,8 @@ class Board:
             if (row, col) not in self.ships:
                 self.ships.append((row, col))
                 # Mark ship location
-                self.board[row][col] = "@"   
-    
+                self.board[row][col] = "@"
+
     def valid_guess(self, row, col):
         """
         Method to check if a given guess is valid, row and column must
@@ -57,22 +57,22 @@ class Board:
         Method to add the guess to the set of guesses.
         """
         self.guesses.add((row, col))
-    
+
     def already_guessed(self, row, col):
         """
         Method to check if the row and columns were already guessed,
         by comparing with guesses data set.
         """
         return (row, col) in self.guesses
-     
+
     def mark(self, row, col, hit):
         """
         Method to mark a hit with "X"or miss with "O" on the board
         """
         if hit:
-            self.board[row][col] = "X"  
+            self.board[row][col] = "X"
         else:
-            self.board[row][col] = "O"  
+            self.board[row][col] = "O"
 
 
 # Create a class battleship Game
@@ -80,33 +80,37 @@ class BattleshipGame:
     def __init__(self):
         """
         Initialise a new instance for the class battleship Game
-        Get the size of board from user,create board for player and computer, Number of ships in the board based on the board size.
-        Hits, attempts and maximum number of attempts can be multiple by the size of the board
+        Get the size of board from user,create board for player and computer,
+        Number of ships in the board based on the board size.
+        Hits, attempts and maximum number of attempts can be multiple
+        by the size of the board
         """
         self.size = self.get_board_size()
-        self.player_board = Board(self.size)  
-        self.computer_board = Board(self.size, computer=True)  
-        self.num_ships = self.size 
+        self.player_board = Board(self.size)
+        self.computer_board = Board(self.size, computer=True)
+        self.num_ships = self.size
         self.player_hits = 0
         self.computer_hits = 0
-        self.attempts= 0
+        self.attempts = 0
         self.max_attempts = self.size * 3
 
     def get_board_size(self):
         """
-        Get the user input for the board size between 5 to 8 and validate the input value.
-        """ 
+        Get the user input for the board size between 5 to 8
+        and validate the input value.
+        """
         # Loop until valid input is provided
-        while True:  
+        while True:
             try:
                 size = int(input("Enter board size (5-8):\n"))
                 # Ensure size is within the valid range
-                if 5 <= size <= 8:  
+                if 5 <= size <= 8:
                     return size
                 else:
                     print("Please choose a size between 5 and 8.")
             except ValueError as e:
-                print(f"Invalid data: {e}. Please enter a valid integer between 5 and 8.\n")
+                print(f"Invalid data: {e}. Please enter a valid integer"
+                      "between 5 and 8.\n")
      
     def show_boards(self):
         """
