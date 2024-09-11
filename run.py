@@ -57,6 +57,16 @@ class Board:
         Method to check if the row and columns were already guessed, by comparing with guesses data set.
         """
         return (row, col) in self.guesses
+    
+    
+    def mark(self, row, col, hit):
+        """
+        Method to mark a hit with "X"  or miss with "O"  on the board
+        """
+        if hit:
+            self.board[row][col] = "X"  
+        else:
+            self.board[row][col] = "O"  
 
 
 # Create a class battleship Game
@@ -114,6 +124,8 @@ def main():
     print(startbattle.player_board.valid_guess(a,b))
     startbattle.player_board.add_guess(a,b)
     print(startbattle.player_board.guesses)
+    startbattle.computer_board.mark(a,b,True)
+    startbattle.show_boards()
 
 print("Welcome to Battleship Game")
 main()
