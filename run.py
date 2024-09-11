@@ -46,12 +46,17 @@ class Board:
         """
         return 0 <= row < self.size and 0 <= col < self.size
 
-     
     def add_guess(self, row, col):
         """
         Method to add the guess to the set of guesses.
         """
         self.guesses.add((row, col))
+    
+    def already_guessed(self, row, col):
+        """
+        Method to check if the row and columns were already guessed, by comparing with guesses data set.
+        """
+        return (row, col) in self.guesses
 
 
 # Create a class battleship Game
