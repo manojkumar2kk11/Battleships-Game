@@ -119,7 +119,22 @@ class BattleshipGame:
         self.computer_board.place_ships(self.num_ships)
 
         print("\nLet's play Battleships!")
-        print(f"You have chosen the board size: {self.size}x{self.size}. You need to defeat {self.num_ships} ships.")  
+        print(f"You have chosen the board size: {self.size}x{self.size}. You need to defeat {self.num_ships} ships.") 
+
+        # Main game loop
+        while self.hits < self.num_ships and self.attempts < self.max_attempts:
+            self.show_boards()  # Show both boards
+            # Recieve the player's row guess
+            try:
+                row_input = int(input("Enter Row of your guess: "))
+                if row_input < self.size:  # Ensure size is within the valid range
+                    row=row_input
+                else:
+                    print("Please choose a valid size.")
+            except ValueError as e:
+                print(f"Invalid data: {e}. Please enter a valid integer.\n")
+                continue
+
 
  
 def main():
