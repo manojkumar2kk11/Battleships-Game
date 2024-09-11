@@ -84,7 +84,7 @@ class BattleshipGame:
         self.player_hits = 0
         self.computer_hits = 0
         self.attempts= 0
-        self.max_attempts = self.size * 2
+        self.max_attempts = self.size * 3
 
     def get_board_size(self):
         """
@@ -193,9 +193,27 @@ class BattleshipGame:
                 print("Exiting the Battleship Game.")
                 break
 
+        # End of the game
+        self.end_game()
 
-             
- 
+    def end_game(self):
+        """
+        Method to handle the end of the game
+        """
+        if self.player_hits == self.num_ships:
+            print("\nCongratulations! You've destroyed all the ships!")
+        elif self.computer_hits == self.num_ships:
+            print("\nSorry! Computer destroyed all your ships!")
+        else:
+            print("\nGame over! You've run out of attempts.")
+
+        print("\nFinal Boards:")
+        print("Player's Board (with ships):")
+        self.player_board.create_board(reveal_ships=True)
+
+        print("\nComputer's Board (with ships revealed):")
+        self.computer_board.create_board(reveal_ships=True)
+
 def main():
     """
     Run the Game
