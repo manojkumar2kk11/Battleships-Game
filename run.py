@@ -1,12 +1,14 @@
 # Import the random number module
 import random
 
-# Create a class Board 
+
+# Create a class Board
 class Board:
     def __init__(self, size, computer=False):
         """
         Initialise a new instance for the class board
-        Size of board, computer, create default doller symbol for the size of the board.
+        Size of board, computer, create default doller symbol
+        for the size of the board.
         Ships and Guesses
         """
         self.size = size
@@ -17,7 +19,9 @@ class Board:
 
     def create_board(self, reveal_ships=False):
         """
-        Method to create the board for players and computer, and to instruct reveal or not the ships based on the player or computer.
+        Method to create the board for players and computer, and
+        to instruct reveal or not the ships based on the player
+        or computer.
         Hide the computer's ships, show hits and misses only
         Show ships on the player's board or computer's revealed board
         """
@@ -38,11 +42,13 @@ class Board:
             col = random.randint(0, self.size - 1)
             if (row, col) not in self.ships:
                 self.ships.append((row, col))
-                self.board[row][col] = "@"  # Mark ship location 
+                # Mark ship location
+                self.board[row][col] = "@"   
     
     def valid_guess(self, row, col):
         """
-        Method to check if a given guess is valid, row and column must be greater than zero and less than the size.
+        Method to check if a given guess is valid, row and column must
+        be greater than zero and less than the size.
         """
         return 0 <= row < self.size and 0 <= col < self.size
 
@@ -54,14 +60,14 @@ class Board:
     
     def already_guessed(self, row, col):
         """
-        Method to check if the row and columns were already guessed, by comparing with guesses data set.
+        Method to check if the row and columns were already guessed,
+        by comparing with guesses data set.
         """
         return (row, col) in self.guesses
-    
-    
+     
     def mark(self, row, col, hit):
         """
-        Method to mark a hit with "X"  or miss with "O"  on the board
+        Method to mark a hit with "X"or miss with "O" on the board
         """
         if hit:
             self.board[row][col] = "X"  
@@ -90,10 +96,12 @@ class BattleshipGame:
         """
         Get the user input for the board size between 5 to 8 and validate the input value.
         """ 
-        while True:  # Loop until valid input is provided
+        # Loop until valid input is provided
+        while True:  
             try:
                 size = int(input("Enter board size (5-8): "))
-                if 5 <= size <= 8:  # Ensure size is within the valid range
+                # Ensure size is within the valid range
+                if 5 <= size <= 8:  
                     return size
                 else:
                     print("Please choose a size between 5 and 8.")
@@ -132,7 +140,6 @@ class BattleshipGame:
         # Place ships on both boards
         self.player_board.place_ships(self.num_ships)
         self.computer_board.place_ships(self.num_ships)
-
         print("\nLet's play Battleships!")
         print(f"You have chosen the board size: {self.size}x{self.size}. You need to defeat {self.num_ships} ships.") 
 
@@ -220,18 +227,6 @@ def main():
     """
     startbattle = BattleshipGame()
     startbattle.start_game()
-    """
-    startbattle.player_board.place_ships(startbattle.num_ships)
-    startbattle.computer_board.place_ships(startbattle.num_ships)
-    startbattle.show_boards()
-    a= int(input("Enter the row guess\n"))
-    b= int(input("Enter the col guess\n"))
-    print(startbattle.player_board.valid_guess(a,b))
-    startbattle.player_board.add_guess(a,b)
-    print(startbattle.player_board.guesses)
-    startbattle.computer_board.mark(a,b,True)
-    startbattle.show_boards()
-    """
 
 print("Welcome to Battleship Game")
 main()
