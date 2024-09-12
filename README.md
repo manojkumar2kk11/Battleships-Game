@@ -34,3 +34,40 @@ This symbol is used when a player guesses a location where no ship is present, i
 - If you guess incorrectly, an O marks the missed attempt.
 - The computer also takes turns guessing positions on your board.
 - The game continues until all ships are destroyed or the maximum number of attempts is reached.
+
+# Testing
+I manually tested this project by completing the following tasks:
+
+- Ran the code through a code institute CI Python Linter to ensure there were no issues.
+- Tested with invalid inputs, such as non-numeric strings when numbers were required, inputs outside the valid range, and repeated inputs.
+- Ran the tests in both my local terminal and the Code Institute's Heroku terminal.
+
+# Bugs
+## Fixed Bugs
+Initially, in the start_game method, I used the same row and column guesses for both the players and the computer. As a result, when playing the game, the players' guesses on the computer's board were also being applied to their own board. To resolve this issue, I updated the code to use separate random row and column numbers for the players' board.
+## Outstanding Bugs
+No remaining bugs.
+
+# Validator Testing
+The code was validated against PEP8 standards with no errors found via code institute CI Python Linter.
+
+![CI Python Linter](assets/images/Python%20Validator.png)
+
+# Deployment
+## Deployment Steps:
+
+- Log in to your Heroku account.
+- Navigate to the Dashboard.
+- Click the "New" button located in the top right corner and select "Create New App" from the dropdown menu.
+- On the "Create New App" page, provide the required app name and select the desired country.
+- Once the project page opens, click on the "Settings" tab.
+- In the "Settings" section, configure the buildpacks in the following order: Python first, followed by NodeJS.
+- Proceed to the "Deploy" tab. Under "Deployment Method," select "GitHub" and link your Heroku app to the GitHub repository.
+- Enter the project name, search for the relevant Git repository, select it, and establish the connection.
+- Under "Manual Deployment," choose the "main" branch and click "Deploy Branch."
+- Once the deployment is complete, click "View" under the message indicating successful deployment.
+
+# Credits
+- I would like to thank, Harry(Mentor) for support for my project in reviewing and providing some guides.
+- The structure and concept of the Battleships game were inspired by Code Institute's "Love Sandwiches" project, 
+  the Battleship concept outlined in Code Institute's video,as well as resources from W3Schools for the quick check for the python functions.
