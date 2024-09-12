@@ -107,9 +107,9 @@ class BattleshipGame:
                 if 5 <= size <= 8:
                     return size
                 else:
-                    print("Please choose a size between 5 and 8.")
+                    print("Please choose a valid size between 5 and 8.")
             except ValueError as e:
-                print(f"Invalid data: {e}. Please enter a valid integer"
+                print(f"Invalid data! Please enter a valid integer"
                       "between 5 and 8.\n")
 
     def show_boards(self):
@@ -134,9 +134,9 @@ class BattleshipGame:
                     return value
                 else:
                     print(f"Please enter a number"
-                          " between 0 and {self.size - 1}.")
+                          f" between 0 and {self.size - 1}.")
             except ValueError as e:
-                print(f"Invalid data: {e}. Please enter a valid integer.\n")
+                print(f"Invalid data! Please enter a valid integer.\n")
 
     def start_game(self):
         """
@@ -147,7 +147,7 @@ class BattleshipGame:
         self.computer_board.place_ships(self.num_ships)
         print("\nLet's play Battleships!")
         print(f"You have chosen the board size: {self.size}x{self.size}."
-              "You need to defeat {self.num_ships} ships.")
+              f"You need to defeat {self.num_ships} ships.")
 
         # Main game loop
         while (self.player_hits < self.num_ships
@@ -170,7 +170,7 @@ class BattleshipGame:
                 print("Player Hit!")
                 self.player_hits += 1
                 print(f"Players Score: {self.player_hits}"
-                      " and Computer Score: {self.computer_hits}")
+                      f" and Computer Score: {self.computer_hits}")
                 # Remove ship from computer's fleet
                 self.computer_board.ships.remove((row, col))
                 # Mark hit on computer board
@@ -179,7 +179,7 @@ class BattleshipGame:
                 print(f"Players guessed: ({row},{col})")
                 print("Player Miss!")
                 print(f"Players Score: {self.player_hits}"
-                      " and Computer Score: {self.computer_hits}")
+                      f" and Computer Score: {self.computer_hits}")
                 # Mark miss on computer board
                 self.computer_board.mark(row, col, False)
 
@@ -193,7 +193,7 @@ class BattleshipGame:
                 print("Computer Hit!")
                 self.computer_hits += 1
                 print(f"Players Score: {self.player_hits}"
-                      " and Computer Score: {self.computer_hits}")
+                      f" and Computer Score: {self.computer_hits}")
                 # Remove ship from computer's fleet
                 self.player_board.ships.remove((row_random, col_random))
                 # Mark hit on computer board
@@ -202,7 +202,7 @@ class BattleshipGame:
                 print(f"Computer guessed: ({row_random},{col_random})")
                 print("Computer Miss!")
                 print(f"Players Score: {self.player_hits}"
-                      " and Computer Score: {self.computer_hits}")
+                      f" and Computer Score: {self.computer_hits}")
                 # Mark miss on computer board
                 self.player_board.mark(row_random, col_random, False)
 
@@ -224,7 +224,7 @@ class BattleshipGame:
         elif self.computer_hits == self.num_ships:
             print("\nSorry! Computer destroyed all your ships!")
         else:
-            print("\nGame over! You've run out of attempts.")
+            print("\nGame over! You've run out of attempts or exited the game")
         print("\nFinal Boards:")
         print("Player's Board (with ships):")
         self.player_board.create_board(reveal_ships=True)
@@ -240,5 +240,12 @@ def main():
     startbattle.start_game()
 
 
+print("--------------------------------------------")
 print("Welcome to Battleship Game")
+print("Read the symbols for playing the Game")
+print("$: Empty space (no guesses made yet)")
+print("@: Ship location (visible on your board)")
+print("X: Hit (successful guess on ship)")
+print("O: Miss (unsuccessful guess, no ship)")
+print("--------------------------------------------")
 main()
