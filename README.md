@@ -35,6 +35,23 @@ This symbol is used when a player guesses a location where no ship is present, i
 - The computer also takes turns guessing positions on your board.
 - The game continues until all ships are destroyed or the maximum number of attempts is reached.
 
+# Features
+Step 1: Read the symbols and enter a number between 5 and 8 to set the board size.
+
+![Step 1](assets/images/step_1_boardsize.png)
+
+Step 2: Guess the row number (less than the board size) and enter it, then do the same for the column number. The chosen row and column will be marked as selected, showing if it's a "hit" or "miss" on the ship. Afterward, the computer will randomly guess a row and column, and display whether it was a hit or miss. Scores will be updated for both the player and the computer.
+
+![Step 2](assets/images/step_2_rowcol.png)
+
+![Step 3](assets/images/step_3_guess.png)
+
+Step 3: Press any key or "n" to exit the game.
+
+![Step 4](assets/images/step_4_continue.png)
+
+Step 4: Repeat Step 2 and Step 3 until either the player or the computer hits all the ships, or after 15 attempts.
+
 # Testing
 I manually tested this project by completing the following tasks:
 
@@ -51,7 +68,7 @@ No remaining bugs.
 # Validator Testing
 The code was validated against PEP8 standards with no errors found via code institute CI Python Linter.
 
-![CI Python Linter](assets/images/Python%20Validator.png)
+![CI Python Linter](assets/images/python_validator.png.png)
 
 # Deployment
 ## Deployment Steps:
