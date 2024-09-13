@@ -57,6 +57,24 @@ I manually tested this project by completing the following tasks:
 
 - Ran the code through a code institute CI Python Linter to ensure there were no issues.
 - Tested with invalid inputs, such as non-numeric strings when numbers were required, inputs outside the valid range, and repeated inputs.
+- Invalid board size
+
+![Invalid Board size](assets/images/incorrect_boardsize.png)
+
+- Invalid Row and Column
+
+![Invalid Row](assets/images/invalid_row.png)
+
+![Invalid Column](assets/images/invalid_column.png)
+
+- Guess Already
+
+![Guess Already](assets/images/guess_already.png)
+
+- Exit Game
+
+![Exit Game](assets/images/exit_game.png)
+
 - Ran the tests in both my local terminal and the Code Institute's Heroku terminal.
 
 # Bugs
